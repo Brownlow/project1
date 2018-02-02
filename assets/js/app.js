@@ -40,18 +40,25 @@ var sessionID = Math.floor(Math.random() * 10000000);
 var connected = database.ref(".info/connected");
 
 
+
+// Connect to Dialog Flow API ============================================================
 $.ajax({
-  type: "GET",
+  	type: "POST",
 	url: baseUrl + "query?v=20150910" + lang + '&query=' + query + '&sessionId=' + sessionID,
 	contentType: "application/json; charset=utf-8",
 	dataType: "json",
+	data: JSON.stringify({
+		query: "What is your name?",
+		lang: "en",
+		sessionId: sessionID
+	}),
 	headers: {
 		"Authorization": "Bearer" + accessToken
 	},
 }).done(function(response) {
-console.log(response);
 
-
+	console.log(response);
+	console.log(response.result.fulfillment.speech);
 
 
 }).fail(function(err) {
@@ -60,11 +67,12 @@ console.log(response);
 });
 
 
-// Update info on page load or new info added ============================================
+// Update info on page load or when new info added ============================================
 
 database.ref().on("child_added", function(childSnapshot) {
-	console.log('i got info');
-
+	
+	//console.log('i got info');
+	//console.log(result.fulfillment.speech);
 });
 
 // On click event to get users input to the chat ========================================
@@ -87,6 +95,8 @@ $('#message-submit').on('click', function(event){
     // empty form fields
     $('#input').val('');
 
+    
+
 });
 
 
@@ -95,12 +105,14 @@ $('#message-submit').on('click', function(event){
 database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 	var chat = childSnapshot.val().name;
-	var chat = childSnapshot.val().sessionId;
-	var chat = childSnapshot.val().chatlog;
+	var sessionId = childSnapshot.val().sessionID;
+	var chatlog = childSnapshot.val().chatlog;
 
-	console.log('stuff');
+	
 
 });
+
+
 
 
 
