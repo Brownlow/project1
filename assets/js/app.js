@@ -40,6 +40,26 @@ var sessionID = Math.floor(Math.random() * 10000000);
 var connected = database.ref(".info/connected");
 
 
+// Get initial message from bot "Hi Whats your name" ============================================================
+
+
+$.ajax({
+	type: "GET",
+	url: baseUrl + "query?v=20150910&e=event_name" + lang + '&query=' + query + '&sessionId=' + sessionID,
+	contentType: "application/json; charset=utf-8",
+	dataType: "json",
+}).done(function(response) {
+
+	// console.log(response);
+	// console.log(response.result.fulfillment.speech);
+
+
+}).fail(function(err) {
+
+  throw err;
+});
+
+
 
 // Connect to Dialog Flow API ============================================================
 $.ajax({
@@ -52,13 +72,38 @@ $.ajax({
 		lang: "en",
 		sessionId: sessionID
 	}),
+	success: function(data) {
+
+		var dataResult = data.result.resolvedQuery;
+
+		if (dataResult === "") {
+			console.log(data.result)
+			if (data.result.action === "weather") {
+  			keyWord = data.result.parameters.address.city;
+  			getWeather();
+			}
+			else if (data.result.action === "web.search") {
+  			keyWord = data.result.resolvedQuery;
+  			getAnswers();
+			}
+        else if (data.result.action === "delivery.search") {
+          keyWord = data.result.parameters.product.toString();
+          getCooking();
+        }
+			}
+			else {
+				botResponse(dataResult);
+				console.log(data);
+			}
+		},
+
 	headers: {
 		"Authorization": "Bearer" + accessToken
 	},
 }).done(function(response) {
 
-	console.log(response);
-	console.log(response.result.fulfillment.speech);
+	// console.log(response);
+	// console.log(response.result.fulfillment.speech);
 
 
 }).fail(function(err) {
@@ -67,48 +112,62 @@ $.ajax({
 });
 
 
-// Update info on page load or when new info added ============================================
 
-database.ref().on("child_added", function(childSnapshot) {
-	
-	//console.log('i got info');
-	//console.log(result.fulfillment.speech);
-});
-
-// On click event to get users input to the chat ========================================
-
-$('#message-submit').on('click', function(event){
-
-	event.preventDefault();
-
-	var name = $('#input').val().trim();
-
-	var chat = {
-		name: name,
-    	//sessionId: sessionId,
-    	//chatlog: chatlog
+function botResponse(val, name) {
+	if (!name) {
+		name = "Botty Mc BotFace";
 	}
+	$("#response").append("<strong>" + name + ":</strong> " + val + "<br>");
 
-	// Change what is saved in firebase
-    database.ref().push(chat);
+} 
 
-    // empty form fields
-    $('#input').val('');
+function userResponse(val, name) {
+	if (!name) {
+		name = "Stacy";
+	}
+	$("#response").append("<strong>" + name + ":</strong> " + val + "<br>");
+
+} 
+
+
+ // On click event to get users input to the chat ========================================
+
+ $('#message-submit').on('click', function(event){
+
+ 	event.preventDefault();
+
+ 	var text = $('#input').val().trim();
+
+ 	var chat = {
+ 		text: text,
+ 		response: response
+     	//sessionId: sessionId,
+     	//chatlog: chatlog
+ 	}
+
+ 	// Change what is saved in firebase
+     database.ref().push(chat);
+
+     // empty form fields
+     $('#input').val('');
 
     
 
-});
+ });
 
 
 // Retreive the Data from Firebase ==========================================================
 
 database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-	var chat = childSnapshot.val().name;
-	var sessionId = childSnapshot.val().sessionID;
-	var chatlog = childSnapshot.val().chatlog;
+	var chat = childSnapshot.val().text;
+	// var sessionId = childSnapshot.val().sessionID;
+	// var chatlog = childSnapshot.val().chatlog;
 
-	
+	console.log(chat);
+	$("#response").append("<strong>" + name + ":</strong> " + chat + "<br>");
+
+
 
 });
 
