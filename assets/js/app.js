@@ -50,13 +50,13 @@ $.ajax({
 	dataType: "json",
 }).done(function(response) {
 
-	// console.log(response);
+	console.log(response);
 	// console.log(response.result.fulfillment.speech);
 
 
 }).fail(function(err) {
 
-  throw err;
+  // throw err;
 });
 
 
@@ -117,7 +117,7 @@ function botResponse(val, name) {
 	if (!name) {
 		name = "Botty Mc BotFace";
 	}
-	$("#response").append("<strong>" + name + ":</strong> " + val + "<br>");
+	$("#response").append("<div class='botInput'>" + name + ":" + val + "</div><br>");
 
 } 
 
@@ -125,7 +125,7 @@ function userResponse(val, name) {
 	if (!name) {
 		name = "Stacy";
 	}
-	$("#response").append("<strong>" + name + ":</strong> " + val + "<br>");
+	$("#response").append("<div class='userInput'>" + name + ":" + val + "</div><br>");
 
 } 
 
@@ -165,7 +165,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 	// var chatlog = childSnapshot.val().chatlog;
 
 	console.log(chat);
-	$("#response").append("<strong>" + name + ":</strong> " + chat + "<br>");
+	$("#response").append("<div class='userInput'>" + name + "You: " + chat + "</div><br>");
 
 
 
