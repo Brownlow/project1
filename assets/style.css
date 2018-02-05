@@ -1,0 +1,22 @@
+body, .head  {
+ background-color: #f6e1ce;
+}
+/*
+.head {
+	background-color: #f6e1ce;
+}*/
+
+.userInput {
+	background-color: #d3d3d3;
+	border-radius: 10px;
+	/*margin-top: 1px;*/
+	/*margin-bottom: 1px;*/
+	padding: 3px; 
+}
+
+.botInput {
+	background-color: #258ffb;
+	border-radius: 10px;
+	padding: 3px; 
+}
+

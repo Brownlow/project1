@@ -10,34 +10,49 @@
     <!-- CSS Stylesheet Link -->
     <link rel="stylesheet" type="text/css" href="assets/style.css"> 
     <!-- Favicon Link -->
-    <link rel="icon" href="assets/Favicon.png">
+    <link rel="icon" href="assets/images/Favicon.png">
 
     <title>Welcome to Thera-Bot</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
 
-    <form>
-      <div id="response"></div>
+    <div class="jumbotron jumbotron-fluid head">
+      <div class="container">
+        <h1 class="display-2">Thera-Bot</h1>
+        <p class="lead"></p>
+      </div>
+    </div>
 
-      <input id="input" type="text" >
-      <button id="message-submit" type="submit">Do the thing</button>
-    </form>
+    
+    <div class="container">
+      <div class="col-7">
+        <div class="row">
+          <div class="card" style="width: 40rem;">
+            <div class="card-body">
+              <form>
+                <div id="response"></div>
+                <input id="input" type="text" style="width: 32rem;">
+                <button id="submit" class="btn btn-secondary btn-sm" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <!-- jQuery -->
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 
     <!-- JavaScript Link -->
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
-    <!-- <script type="text/javascript" src="assets/js/index.js"></script> -->
 
-    <!-- Firebase -->
 
   </body>
 </html>
