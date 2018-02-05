@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/style.css"> 
     <!-- Favicon Link -->
     <link rel="icon" href="assets/images/Favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+13px" rel="stylesheet">
 
     <title>Welcome to Thera-Bot</title>
   </head>
@@ -18,21 +19,23 @@
 
     <div class="jumbotron jumbotron-fluid head">
       <div class="container">
+        <img  id="botface-lg" src="./assets/images/botface.png" alt="botface">
         <h1 class="display-2">Thera-Bot</h1>
         <p>A session with Thera Bot will lead you to a song that fits your mood.</p>
         <p class="lead"></p>
+        <div id="start"></div>
       </div>
     </div>
 
-   <div class="container" id="start"></div>
+   
 
     <div class="container mainContainer">
       <div class="row">
         <div class="col-7">
-          <div class="card" style="width: 40rem;">
+          <div class="card">
             <div class="card-body">
+              <div id="response"></div>
               <form>
-                <div id="response"></div>
                 <input id="input" type="text" style="width: 32rem;">
                 <button id="submit" class="btn btn-secondary btn-sm" type="submit">Submit</button>
               </form>

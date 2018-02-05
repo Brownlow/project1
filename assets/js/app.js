@@ -24,6 +24,7 @@ $(function(){
 
 	var newBtn = $("<button>");
 	newBtn.attr("id", "startBtn");
+	newBtn.addClass('btn btn-lg');
 	newBtn.text("Click to Start Session");
 	$("#start").append(newBtn);
 
@@ -33,17 +34,18 @@ $(function(){
 
 		$(".mainContainer").show();
 		$("#startBtn").hide();
+		$("#botface-lg").hide();
 	});
 
-	$("#response").append("<div class='botResponse'>Thera-Bot: Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name.</div>"); 
+	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
 
-// This starts the user and bot interaction. Everytime a user click the submit button we use the ajax call to retrieve data from the dialogflow api and reach our trained bot and will append its response to the page in accordance to the users input. 
+
 	$("#submit").on("click", function(event) {
 		event.preventDefault();
-
-		var text = $("#input").val();
-		$("#response").append("<div class='userResponse'>You: " 	+ text + "</div>"); 
 	
+		var text = $("#input").val();
+		$("#response").append("<div class='userResponse'><img class='userface' src='./assets/images/userface.png'>" + text + "</div>"); 
+
 		$.ajax({
 		  type: "POST",
 			url: baseUrl + "query?v=20150910",
@@ -59,12 +61,13 @@ $(function(){
 				sessionId: sessionID
 			}),
 			success: function(response) {
-				console.log("Bot: " + response.result.fulfillment.	speech);
-				$("#response").append("<div class='botResponse'>" + 	response.result.fulfillment.speech + " <img 	class='botface' src='./assets/images/	botface.png'></div>");
+				console.log("Bot: " + response.result.fulfillment.speech);
+				$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + response.result.fulfillment.speech + "</div>");
+				
+
 				$('#input').val('');
 			}
 		});
 	});
 });
 
-	
