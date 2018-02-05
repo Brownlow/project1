@@ -34,33 +34,44 @@ $(function(){
 		$("#startBtn").hide();
 	});
 
+$("#response").append("Thera-Bot: Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name."); 
 
-	$("#response").append("Thera-Bot: Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name."); 
-
-	$("#submit").on("click", function(event) {
+$("#submit").on("click", function(event) {
 		event.preventDefault();
 	
 		var text = $("#input").val();
 		$("#input").val("");
-		$("#response").append("<div>You: " + text + "</div>"); 
-	
-		$.ajax({
-		  type: "POST",
-			url: baseUrl + "query?v=20150910",
-			contentType: "application/json; charset=utf-8",
-			async: true,
-			dataType: "json",
-			headers: {
-				Authorization: "Bearer" + accessToken
-			},
-			data: JSON.stringify({
-				query: text, 
-				lang: "en", 
-				sessionId: sessionID
-			}),
-			success: function(response) {
-				$("#response").append("<div>Thera-Bot: " + response.result.fulfillment.speech + "</div>")
-			}
-		});
+		$("#response").append("<div>You: " + text + "</div>");
+
+$("#submit").on("click", function(event) {
+	event.preventDefault();
+
+	var text = $("#input").val();
+	$("#response").append("<div class='userResponse'>You: " + text + "</div>"); 
+
+	$.ajax({
+	  type: "POST",
+		url: baseUrl + "query?v=20150910",
+		contentType: "application/json; charset=utf-8",
+		async: true,
+		dataType: "json",
+		headers: {
+			Authorization: "Bearer" + accessToken
+		},
+		data: JSON.stringify({
+			query: text, 
+			lang: "en", 
+			sessionId: sessionID
+		}),
+		success: function(response) {
+			console.log("Bot: " + response.result.fulfillment.speech);
+			$("#response").append("<div class='botResponse'>" + response.result.fulfillment.speech + " <img class='botface' src='./assets/images/botface.png'></div>");
+			$('#input').val('');
+
+		}
+
+		
 	});
+	
 });
+
