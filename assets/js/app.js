@@ -1,7 +1,6 @@
-// Authorization: Bearer 2d39bfb1417c41a1b31dba35018c1b74
-// Developer Access Token e78f4f72045f4255a670c60fe425182c
 $(function(){
 
+//Initialize firebase =======================================
 	var config = {
 		apiKey: "AIzaSyChQLuBa0Owj-Zbnpk8_uMcIYAmFz4dFj8",
 		authDomain: "chatbot-53c37.firebaseapp.com",
@@ -14,12 +13,13 @@ $(function(){
 	
 	var database = firebase.database();
 	
-	var accessToken = "c6c16114ebdc4e1dac52f19365d3c296"; // Done
+	var accessToken = "c6c16114ebdc4e1dac52f19365d3c296";
 	var baseUrl = "https://api.dialogflow.com/v1/";
 	
 	var sessionID = Math.floor(Math.random() * 10000000);
 	var connected = database.ref(".info/connected");
-	
+
+// This hides the main content dynamically adds a start button 
 	$(".mainContainer").hide();
 
 	var newBtn = $("<button>");
@@ -28,6 +28,7 @@ $(function(){
 	newBtn.text("Click to Start Session");
 	$("#start").append(newBtn);
 
+// Once the start button is clicked it starts the session and greeting you with an initial response from the bot. 
 	$("#startBtn").on("click", function(event) {
 		event.preventDefault();
 
@@ -35,11 +36,6 @@ $(function(){
 		$("#startBtn").hide();
 		$("#botface-lg").hide();
 	});
-
-	function updateScroll(){
-    	var element = document.getElementById("response");
-    	element.scrollTop = element.scrollHeight;
-	}
 
 	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
 
@@ -49,7 +45,6 @@ $(function(){
 	
 		var text = $("#input").val();
 		$("#response").append("<div class='userResponse'><img class='userface' src='./assets/images/userface.png'>" + text + "</div>"); 
-		updateScroll();
 
 		$.ajax({
 		  type: "POST",
@@ -68,13 +63,11 @@ $(function(){
 			success: function(response) {
 				console.log("Bot: " + response.result.fulfillment.speech);
 				$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + response.result.fulfillment.speech + "</div>");
-				updateScroll();
+				
 
 				$('#input').val('');
-	
 			}
 		});
 	});
 });
-
 
