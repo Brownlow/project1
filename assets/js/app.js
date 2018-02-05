@@ -39,12 +39,18 @@ $(function(){
 
 	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
 
+	function updateScroll(){
+ 	  	var element = document.getElementById("response");
+ 	  	element.scrollTop = element.scrollHeight;
+ 	}
 
 	$("#submit").on("click", function(event) {
 		event.preventDefault();
 	
 		var text = $("#input").val();
 		$("#response").append("<div class='userResponse'><img class='userface' src='./assets/images/userface.png'>" + text + "</div>"); 
+
+		updateScroll();
 
 		$.ajax({
 		  type: "POST",
@@ -64,6 +70,7 @@ $(function(){
 				console.log("Bot: " + response.result.fulfillment.speech);
 				$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + response.result.fulfillment.speech + "</div>");
 				
+				updateScroll();
 
 				$('#input').val('');
 			}
