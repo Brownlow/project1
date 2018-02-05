@@ -24,6 +24,7 @@ $(function(){
 
 	var newBtn = $("<button>");
 	newBtn.attr("id", "startBtn");
+	newBtn.addClass('btn btn-lg');
 	newBtn.text("Click to Start Session");
 	$("#start").append(newBtn);
 
@@ -32,46 +33,48 @@ $(function(){
 
 		$(".mainContainer").show();
 		$("#startBtn").hide();
+		$("#botface-lg").hide();
 	});
 
-$("#response").append("Thera-Bot: Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name."); 
+	function updateScroll(){
+    	var element = document.getElementById("response");
+    	element.scrollTop = element.scrollHeight;
+	}
 
-$("#submit").on("click", function(event) {
+	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
+
+
+	$("#submit").on("click", function(event) {
 		event.preventDefault();
 	
 		var text = $("#input").val();
-		$("#input").val("");
-		$("#response").append("<div>You: " + text + "</div>");
+		$("#response").append("<div class='userResponse'><img class='userface' src='./assets/images/userface.png'>" + text + "</div>"); 
+		updateScroll();
 
-$("#submit").on("click", function(event) {
-	event.preventDefault();
+		$.ajax({
+		  type: "POST",
+			url: baseUrl + "query?v=20150910",
+			contentType: "application/json; charset=utf-8",
+			async: true,
+			dataType: "json",
+			headers: {
+				Authorization: "Bearer" + accessToken
+			},
+			data: JSON.stringify({
+				query: text, 
+				lang: "en", 
+				sessionId: sessionID
+			}),
+			success: function(response) {
+				console.log("Bot: " + response.result.fulfillment.speech);
+				$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + response.result.fulfillment.speech + "</div>");
+				updateScroll();
 
-	var text = $("#input").val();
-	$("#response").append("<div class='userResponse'>You: " + text + "</div>"); 
-
-	$.ajax({
-	  type: "POST",
-		url: baseUrl + "query?v=20150910",
-		contentType: "application/json; charset=utf-8",
-		async: true,
-		dataType: "json",
-		headers: {
-			Authorization: "Bearer" + accessToken
-		},
-		data: JSON.stringify({
-			query: text, 
-			lang: "en", 
-			sessionId: sessionID
-		}),
-		success: function(response) {
-			console.log("Bot: " + response.result.fulfillment.speech);
-			$("#response").append("<div class='botResponse'>" + response.result.fulfillment.speech + " <img class='botface' src='./assets/images/botface.png'></div>");
-			$('#input').val('');
-
-		}
-
-		
-	});
+				$('#input').val('');
 	
+			}
+		});
+	});
 });
+
 

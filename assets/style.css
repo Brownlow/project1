@@ -7,7 +7,7 @@ body, .head  {
 }*/
 
 .card-body{
-	background-color: #F7F7F7;
+	overflow:scroll;
 }
 
 .userInput {
@@ -18,8 +18,27 @@ body, .head  {
 	padding: 3px; 
 }
 
+#input{
+	padding:10px;
+	border:0;
+	border-radius:20px;
+}
+
+
 #input::placeholder{
-	color:#f5f5f5s;
+	color:#f5f5f5;
+
+}
+
+.card{
+	background-color:#EBF3F6;
+	border:0;
+}
+
+#startBtn{
+	background-color:#2C337F;
+	border:0;
+	color:#fff;
 }
 
 #submit{
@@ -41,9 +60,11 @@ body, .head  {
 	margin:20px 0;
 	border-radius:0 20px 20px 20px;
 	border-color:purple;
-	 -webkit-box-shadow: 0 4px 10px -6px #777;
-       -moz-box-shadow: 0 4px 10px -6px #777;
-            box-shadow: 0 4px 10px -6px #777;
+	-webkit-box-shadow: 0 4px 10px -6px #777;
+    -moz-box-shadow: 0 4px 10px -6px #777;
+    box-shadow: 0 4px 10px -6px #777;
+    font-family: 'Slabo 13px', serif;
+    padding-left: 50px;
 }
 
 .botResponse{
@@ -53,14 +74,28 @@ body, .head  {
 	margin:20px 0;
 	border-radius:20px 0 20px 20px;
 	text-align:right;
-	 -webkit-box-shadow: 0 4px 10px -6px #777;
-       -moz-box-shadow: 0 4px 10px -6px #777;
-            box-shadow: 0 4px 10px -6px #777;
-            color:#222;
+	-webkit-box-shadow: 0 4px 10px -6px #777;
+    -moz-box-shadow: 0 4px 10px -6px #777;
+    box-shadow: 0 4px 10px -6px #777;
+    color:#222;
+    padding-right: 50px;
+    font-family: 'Slabo 13px', serif;
 }
 
 .botface{
 	width:24px;
 	height:24px;
-	margin-left:20px;
+	float: right;
+	margin-right: -40px;    
 }
+
+.userface{
+	width: 24px;
+    height: 24px;
+    float: left;
+    margin-left: -40px;
+}
+
+
+
+
