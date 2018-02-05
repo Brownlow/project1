@@ -6,10 +6,6 @@ body, .head  {
 	background-color: #f6e1ce;
 }*/
 
-.card-body{
-	overflow:scroll;
-}
-
 .userInput {
 	background-color: #5FD9F6;
 	border-radius: 10px;
@@ -22,12 +18,19 @@ body, .head  {
 	padding:10px;
 	border:0;
 	border-radius:20px;
+	border:1px solid #9ecada;
 }
 
 
 #input::placeholder{
 	color:#f5f5f5;
 
+}
+
+#response{
+	height:auto;
+	max-height:300px;
+	overflow:scroll;
 }
 
 .card{
