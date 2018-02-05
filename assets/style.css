@@ -1,22 +1,66 @@
 body, .head  {
- background-color: #f6e1ce;
+ background-color: #EBF3F6;
 }
 /*
 .head {
 	background-color: #f6e1ce;
 }*/
 
+.card-body{
+	background-color: #F7F7F7;
+}
+
 .userInput {
-	background-color: #d3d3d3;
+	background-color: #5FD9F6;
 	border-radius: 10px;
 	/*margin-top: 1px;*/
 	/*margin-bottom: 1px;*/
 	padding: 3px; 
 }
 
+#input::placeholder{
+	color:#f5f5f5s;
+}
+
+#submit{
+	background-color:#2C337F;
+	border:0;
+}
+
 .botInput {
-	background-color: #258ffb;
+	background-color: white;
 	border-radius: 10px;
 	padding: 3px; 
 }
 
+
+.userResponse{
+	background-color:#5FD9F6;
+	color:#fff;
+	padding:10px;
+	margin:20px 0;
+	border-radius:0 20px 20px 20px;
+	border-color:purple;
+	 -webkit-box-shadow: 0 4px 10px -6px #777;
+       -moz-box-shadow: 0 4px 10px -6px #777;
+            box-shadow: 0 4px 10px -6px #777;
+}
+
+.botResponse{
+	background-color:#fff;
+	color:#fff;
+	padding:10px;
+	margin:20px 0;
+	border-radius:20px 0 20px 20px;
+	text-align:right;
+	 -webkit-box-shadow: 0 4px 10px -6px #777;
+       -moz-box-shadow: 0 4px 10px -6px #777;
+            box-shadow: 0 4px 10px -6px #777;
+            color:#222;
+}
+
+.botface{
+	width:24px;
+	height:24px;
+	margin-left:20px;
+}
