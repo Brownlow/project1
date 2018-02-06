@@ -29,7 +29,7 @@ $(function(){
 	var songs = {
       "happy": [
         "MOWDb2TBYDg?rel=0'",
-        "6bWyhj7siEY",
+        "6bWyhj7siEY?rel=0'",
         "uWXUWepSak4?rel=0'",
         "QXCGnTy-v2M?rel=0'",
         "5CeRWTdYFY8?rel=0'"
@@ -87,7 +87,7 @@ $(function(){
         "otXGqU4LBEI?rel=0'",
         "KKC-6tKKfgM?rel=0'",
         "mTa8U0Wa0q8?rel=0'",
-        "AFgCkwI1gTw'",
+        "AFgCkwI1gTw?rel=0'",
         "swSytFVMHuU?rel=0'",
         "xs9mkVMv830?rel=0'",
         "0P5jV4lHHR0?rel=0'",
