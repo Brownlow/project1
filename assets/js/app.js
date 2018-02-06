@@ -22,6 +22,7 @@ $(function(){
 	var connected = database.ref(".info/connected");
 
 	var userMood = "";
+	var userInput;
 //========================================Song Generation test
 	
 	// Create an array of moods and their associated songs
@@ -166,7 +167,8 @@ $(function(){
 				var chatID = sessionID;
 	
 				// User Input
-				var userInput = $('#input').val().trim();
+				userInput = $('#input').val().trim();
+				$('#input').val('');
 	
 				var chat = {
 					id: sessionID,
@@ -179,8 +181,6 @@ $(function(){
 					database.ref().push(chat);
 				}
 
-				$('#input').val('');
-
 
 				database.ref().on("child_added", function(childsnapshot) {
 					userMood = childsnapshot.val().response
@@ -188,17 +188,19 @@ $(function(){
     				
     			});
 
-				setTimeout(song(userMood), 1000);
+				setTimeout(song(userMood), 5000);
 				
 			}
 		});
 	});
+
 	function song(mood) {
+		if (mood === userInput) {
 		var chosenSong = songs[mood][Math.floor(Math.random() * songs[mood].length)]
     		console.log(chosenSong);
     		$(".video").html("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
 			console.log("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
+		}
 	}
-	
 });
 
