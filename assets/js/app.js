@@ -20,6 +20,8 @@ $(function(){
 	
 	var sessionID = Math.floor(Math.random() * 10000000);
 	var connected = database.ref(".info/connected");
+
+	var userMood = "";
 //========================================Song Generation test
 	
 	// Create an array of moods and their associated songs
@@ -153,9 +155,9 @@ $(function(){
 				$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + response.result.fulfillment.speech + "</div>");
 				
 				updateScroll();
-				console.log(response);
-				console.log(userInput);
-				console.log(response.result.contexts[0].parameters.feelings);
+				// console.log(response);
+				// console.log(userInput);
+				// console.log(response.result.contexts[0].parameters.feelings);
 
 				
 				// Store info in Firebase =================================================
@@ -177,10 +179,17 @@ $(function(){
 					database.ref().push(chat);
 				}
 
-				// Change what is saved in firebase
-    			
-
 				$('#input').val('');
+
+
+				database.ref().on("child_added", function(childsnapshot) {
+					userMood = childsnapshot.val().response
+					//console.log(childsnapshot.val().response);
+    				
+    			});
+
+				setTimeout(song(userMood), 1000);
+				
 			}
 		});
 	});
@@ -190,6 +199,6 @@ $(function(){
     		$(".video").html("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
 			console.log("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
 	}
-	song("helpless");
+	
 });
 
