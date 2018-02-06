@@ -14,19 +14,35 @@ $(function(){
 	
 	var database = firebase.database();
 	
-	var accessToken = "e78f4f72045f4255a670c60fe425182c"; // Done
+	var accessToken = "c6c16114ebdc4e1dac52f19365d3c296"; // Done
 	var baseUrl = "https://api.dialogflow.com/v1/";
 	
 	var sessionID = Math.floor(Math.random() * 10000000);
 	var connected = database.ref(".info/connected");
 	
-	
+	$(".mainContainer").hide();
+
+	var newBtn = $("<button>");
+	newBtn.attr("id", "startBtn");
+	newBtn.text("Click to Start Session");
+	$("#start").append(newBtn);
+
+	$("#startBtn").on("click", function(event) {
+		event.preventDefault();
+
+		$(".mainContainer").show();
+		$("#startBtn").hide();
+	});
+
+
+	$("#response").append("Thera-Bot: Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name."); 
+
 	$("#submit").on("click", function(event) {
 		event.preventDefault();
 	
 		var text = $("#input").val();
 		$("#input").val("");
-		$("#response").prepend("You: " + text); 
+		$("#response").append("<div>You: " + text + "</div>"); 
 	
 		$.ajax({
 		  type: "POST",
@@ -43,7 +59,7 @@ $(function(){
 				sessionId: sessionID
 			}),
 			success: function(response) {
-				$("#response").prepend("Bot: " + response.result.fulfillment.speech)
+				$("#response").append("<div>Thera-Bot: " + response.result.fulfillment.speech + "</div>")
 			}
 		});
 	});
