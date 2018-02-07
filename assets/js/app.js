@@ -120,7 +120,7 @@ $(function(){
 		$("#botface-lg").hide();
 	});
 
-	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
+	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thanks for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
 
 // Gets scroll location to update appended content and make it always visible on screen.
 	function updateScroll(){
