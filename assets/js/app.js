@@ -38,7 +38,6 @@ $(function(){
         "5CeRWTdYFY8?rel=0'"
       ],
       "sad": [
-        "4N3N1MIvVc4?rel=0'",
         "9vjNdSOgFso?rel=0'",
         "5rOiW_xY-kc?rel=0'",
         "ZkJwpYrcAko?rel=0'",
@@ -83,8 +82,7 @@ $(function(){
         "J2z7LXpAX3Q?rel=0&amp;start=25'",
         "1BeyIjswOkI?rel=0'",
         "m53--yTPQNk?rel=0'",
-        "NTNp1IbNLzA?rel=0'",
-        "4N3N1MlvVc4?rel=0'"
+        "NTNp1IbNLzA?rel=0'"
       ],
       "love": [
         "otXGqU4LBEI?rel=0'",
@@ -122,7 +120,7 @@ $(function(){
 		$("#botface-lg").hide();
 	});
 
-	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thank for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
+	$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + "Hi there! Thanks for choosing me to help you get through whatever is going on emotionally. Let's get started by telling me your name." + "</div>"); 
 
 // Gets scroll location to update appended content and make it always visible on screen.
 	function updateScroll(){
