@@ -137,6 +137,12 @@ $(function(){
 		var text = $("#input").val();
 		$("#response").append("<div class='userResponse'><img class='userface' src='./assets/images/userface.png'>" + text + "</div>"); 
 
+
+		// Empty response alert
+		if(text === ''){
+			$("#input").attr('placeholder', 'please add some text');
+		} 
+
 		updateScroll();
 		
 
@@ -159,7 +165,9 @@ $(function(){
 				
 				updateScroll();
 
-				
+				// Remove any placeholder text
+				$("#input").attr('placeholder', '');
+
 				// Store info in Firebase =================================================
 	
 				// Unique session ID
