@@ -25,9 +25,10 @@ $(function(){
 	var userInput;
 
 	var botFeelings;
-//========================================Song Generation test
 	
-	// Create an array of moods and their associated songs
+
+// Array of moods and their associated songs ======================
+
 	var songs = {
       "happy": [
         "MOWDb2TBYDg?rel=0'",
@@ -154,13 +155,9 @@ $(function(){
 				sessionId: sessionID
 			}),
 			success: function(response) {
-				//console.log("Bot: " + response.result.fulfillment.speech);
 				$("#response").append("<div class='botResponse'><img class='botface' src='./assets/images/botface.png'>" + response.result.fulfillment.speech + "</div>");
 				
 				updateScroll();
-				// console.log(response);
-				// console.log(userInput);
-				// console.log(response.result.contexts[0].parameters.feelings);
 
 				
 				// Store info in Firebase =================================================
@@ -179,7 +176,7 @@ $(function(){
 				}
 
 
-				// ===========================================================================
+				// Get info from Firebase  =================================================
 
 
 				botFeelings = response.result.contexts[0].parameters.feelings;
@@ -190,26 +187,24 @@ $(function(){
 					console.log(botFeelings);
 				}
 
-
 				database.ref().on("child_added", function(childsnapshot) {
 					userMood = childsnapshot.val().response
-					// console.log(chat.response);
     				
     			});
 
+				// Set imteout to delay response
 				setTimeout(song(userMood), 5000);
 				
 			}
 		});
 	});
 
+	// Get Videos from Youtube  ==============================================================
 	function song(mood) {
 		if (mood === botFeelings) {
 		var chosenSong = songs[mood][Math.floor(Math.random() * songs[mood].length)];
-    		console.log(chosenSong);
-    		$(".video").html("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
-			console.log("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
-			$('.video').append('<button class="refresh btn" onClick="window.location.reload()">Restart Session</buttton>')
+    		$(".video").html("<iframe src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
+			$('.video').append('<button class="refresh btn" onClick="window.location.reload()">End Session</buttton>')
 		}
 	}
 });
