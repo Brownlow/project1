@@ -209,3 +209,8 @@ $(function(){
 	}
 });
 
+// Lettering JS for super sweet word anitmations
+$(document).ready(function() {
+	$(".display-2").lettering();
+});
+
