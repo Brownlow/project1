@@ -29,9 +29,22 @@ body, .head  {
 	margin-top:-90px;
 }
 
+iframe{
+	border: 10px solid #fff;
+    border-radius: 7px;
+    box-shadow: 4px 4px 4px #999;
+    margin-top: -90px;
+}
+
 .card{
 	background-color:#EBF3F6;
 	border:0;
+}
+
+.refresh{
+	background-color:#2C337F;
+	color:#fff;
+	margin-top:20px;
 }
 
 #startBtn{
