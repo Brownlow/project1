@@ -201,7 +201,7 @@ $(function(){
     			});
 
 				// Set imteout to delay response
-				setTimeout(song(userMood), 5000);
+				setTimeout(function() {song(userMood)}, 5000);
 				
 			}
 		});
