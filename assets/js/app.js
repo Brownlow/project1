@@ -177,6 +177,11 @@ $(function(){
 					userInput: userInput,
 					response: response.result.contexts[0].parameters.feelings
 				}
+
+
+				// ===========================================================================
+
+
 				botFeelings = response.result.contexts[0].parameters.feelings;
 				
 				if(botFeelings){
@@ -204,6 +209,7 @@ $(function(){
     		console.log(chosenSong);
     		$(".video").html("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
 			console.log("<iframe width='560' height='315' src='https://youtube.com/embed/" + chosenSong + " frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>");
+			$('.video').append('<button class="refresh btn" onClick="window.location.reload()">Restart Session</buttton>')
 		}
 	}
 });
