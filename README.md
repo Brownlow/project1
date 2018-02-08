@@ -40,11 +40,11 @@ jQuery, Bootstrap, Google Fonts, Animate.css, and lettering.js
 
 Code to initialize firebase:
 
-![initializefirebase]https://user-images.githubusercontent.com/33561555/35955722-06bc1a5a-0c46-11e8-9fa3-8ff679d65b82.jpeg
+![initializefirebase](https://user-images.githubusercontent.com/33561555/35956086-5f571eb0-0c48-11e8-9b99-ccf51ac30f83.jpeg)
 
 Gets users input and info from firebase:
 
-![getinput]https://user-images.githubusercontent.com/33561555/35955796-984d8c9c-0c46-11e8-99b7-baaae6174b85.jpg
+![getuserinputandinfofromfirebase](https://user-images.githubusercontent.com/33561555/35956074-451c1582-0c48-11e8-81f1-da689819f2e7.jpg)
 
 Hitting the Firebase API:
 
